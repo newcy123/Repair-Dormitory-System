@@ -9,6 +9,12 @@ import com.cpe.dormsys.repository.RoomBookingRepository;
 import com.cpe.dormsys.repository.StaffRepository;
 import com.cpe.dormsys.repository.VehicleTypeRepository;
 
+import com.cpe.dormsys.entity.DeviceProblem;
+import com.cpe.dormsys.entity.DeviceType;
+
+import com.cpe.dormsys.repository.DeviceProblemRepository;
+import com.cpe.dormsys.repository.DeviceTypeRepository;
+
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,8 +29,23 @@ public class DormitoryApplication {
 
 	@Bean
 	ApplicationRunner init(RoomBookingRepository roomBookingRepository, 
-	VehicleTypeRepository vehicleTypeRepository, StaffRepository staffRepository) {
+	VehicleTypeRepository vehicleTypeRepository, StaffRepository staffRepository,
+	DeviceTypeRepository deviceTypeRepository, DeviceProblemRepository deviceProblemRepository
+	) {
 		return args -> {
+			
+			Stream.of("อุปกรณ์ไฟฟ้า","อุปกรณ์ประปา", "คุรุภัณฑ์").forEach(type -> {
+				DeviceType deviceType = new DeviceType(); // สร้าง Object Customer
+				deviceType.setType(type); // set ชื่อ (name) ให้ Object ชื่อ Customer
+				deviceTypeRepository.save(deviceType); // บันทึก Objcet ชื่อ Customer
+			});
+			
+			 Stream.of("หลอดไฟ้", "ก็อกน้ำ", "มุ้งลวด").forEach(problem -> {
+				DeviceProblem deviceProblem= new DeviceProblem(); // สร้าง Object Customer
+				deviceProblem.setProblem(problem); // set ชื่อ (name) ให้ Object ชื่อ Customer
+				deviceProblemRepository.save(deviceProblem); // บันทึก Objcet ชื่อ Customer
+			});
+			
 			Stream.of("รถจักรยานยนต์", "รถยนต์", "จักรยาน").forEach(type -> {
 				VehicleType	vehicleType = new VehicleType(); // สร้าง Object Customer
 				vehicleType.setType(type); // set ชื่อ (name) ให้ Object ชื่อ Customer
