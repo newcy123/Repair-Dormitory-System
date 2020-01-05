@@ -42,7 +42,7 @@ public class EnrollVehicleController {
         return enrollVehicleRepository.findAll().stream().collect(Collectors.toList());
     }
 
-    @PostMapping("/enrollVehicle/{staff_id}/{vehicle_Type_id}/{roomBooking_id}/{licensePlate}/{brandName}/{otherDetails}")
+    @PostMapping("/enrollVehicle/{staff_id}/{vehicle_Type_id}/c/{licensePlate}/{brandName}/{otherDetails}")
     public EnrollVehicle newEnrollVehicle(EnrollVehicle newEnrollVehicle,
     @PathVariable long staff_id,
     @PathVariable long vehicle_Type_id,
