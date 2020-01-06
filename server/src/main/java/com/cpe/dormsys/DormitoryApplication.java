@@ -3,11 +3,8 @@ package com.cpe.dormsys;
 import java.util.stream.Stream;
 
 import com.cpe.dormsys.entity.RoomBooking;
-import com.cpe.dormsys.entity.Staff;
-import com.cpe.dormsys.entity.VehicleType;
 import com.cpe.dormsys.repository.RoomBookingRepository;
-import com.cpe.dormsys.repository.StaffRepository;
-import com.cpe.dormsys.repository.VehicleTypeRepository;
+
 
 import com.cpe.dormsys.entity.DeviceProblem;
 import com.cpe.dormsys.entity.DeviceType;
@@ -28,9 +25,7 @@ public class DormitoryApplication {
 	}
 
 	@Bean
-	ApplicationRunner init(RoomBookingRepository roomBookingRepository, 
-	VehicleTypeRepository vehicleTypeRepository, StaffRepository staffRepository,
-	DeviceTypeRepository deviceTypeRepository, DeviceProblemRepository deviceProblemRepository
+	ApplicationRunner init(RoomBookingRepository roomBookingRepository, DeviceTypeRepository deviceTypeRepository, DeviceProblemRepository deviceProblemRepository
 	) {
 		return args -> {
 			
@@ -46,17 +41,6 @@ public class DormitoryApplication {
 				deviceProblemRepository.save(deviceProblem); // บันทึก Objcet ชื่อ Customer
 			});
 			
-			Stream.of("รถจักรยานยนต์", "รถยนต์", "จักรยาน").forEach(type -> {
-				VehicleType	vehicleType = new VehicleType(); // สร้าง Object Customer
-				vehicleType.setType(type); // set ชื่อ (name) ให้ Object ชื่อ Customer
-				vehicleTypeRepository.save(vehicleType); // บันทึก Objcet ชื่อ Customer
-			});
-
-			Stream.of("สมพร ศรีสุข", "ชาติชัย มาดี", "นานา จิตา").forEach(staffName -> {
-				Staff staff = new Staff();
-				staff.setStaffName(staffName);
-				staffRepository.save(staff);
-			});
 
 			RoomBooking rbk1 = new RoomBooking("ดนัย ใจดี", "S701");		
 			roomBookingRepository.save(rbk1);
@@ -77,9 +61,10 @@ public class DormitoryApplication {
 			RoomBooking rbk9 = new RoomBooking("สมพร วงเวียน", "S703");
 			roomBookingRepository.save(rbk9);
 			
+			deviceTypeRepository.findAll().forEach(System.out::println);
+			deviceProblemRepository.findAll().forEach(System.out::println);
 			roomBookingRepository.findAll().forEach(System.out::println);
-			vehicleTypeRepository.findAll().forEach(System.out::println);
-			staffRepository.findAll().forEach(System.out::println);
+			
 		};
 	}
 
