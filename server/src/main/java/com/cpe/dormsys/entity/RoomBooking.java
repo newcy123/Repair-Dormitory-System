@@ -31,7 +31,7 @@ public class RoomBooking {
     private @NonNull String roomNo;
 
     @OneToMany(fetch = FetchType.EAGER)
-    private Collection<EnrollVehicle> enroll;
+    private Collection<Repair> repair;
 
     public RoomBooking() {}
     public RoomBooking(String stdName, String roomNo) {
