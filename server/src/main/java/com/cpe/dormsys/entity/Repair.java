@@ -44,9 +44,9 @@ public class Repair {
     @JoinColumn(name = "DEVICEPROBLEMS_ID", insertable = true)
     private DeviceProblem problem;
     
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = RoomBooking.class)
+    @ManyToOne(targetEntity = RoomBooking.class)
     @JoinColumn(name = "ROOMBOOKING_ID", insertable = true)
-    private RoomBooking enrolledStudents;
+    private RoomBooking enrolled;
 
   
 
