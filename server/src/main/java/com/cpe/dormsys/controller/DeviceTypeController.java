@@ -20,7 +20,7 @@ public class DeviceTypeController {
     @Autowired
     DeviceTypeRepository deviceTypeRepository;
 
-    @GetMapping("/Types")
+    @GetMapping("/DeviceTypes")
     public Collection<DeviceType> getTypes() {
         return deviceTypeRepository.findAll().stream().collect(Collectors.toList());
 

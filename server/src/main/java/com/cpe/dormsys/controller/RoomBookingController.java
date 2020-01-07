@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 import com.cpe.dormsys.entity.RoomBooking;
 import com.cpe.dormsys.repository.RoomBookingRepository;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class RoomBookingController {
 
+    @Autowired
+    RoomBookingRepository repository;
+
     @Autowired // เป็นการ connect ไปยัง database ซึ่งในที่นี้เราไม่ต้องเขียน connection database 
     private RoomBookingRepository roomBookingRepository;
 
+    @GetMapping("/roomBookings/{id}")
+    public RoomBooking employeeId(@PathVariable long id) {
+        return repository.findById(id);
+    }
+    
     @GetMapping("/roomBookings")
     public Collection<RoomBooking> getRoomBookings() {
         return roomBookingRepository.findAll().stream().collect(Collectors.toList());

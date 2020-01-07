@@ -21,7 +21,7 @@ public class DeviceProblemController {
         DeviceProblemRepository deviceProblemRepository;
 
 
-        @GetMapping("/Problems")
+        @GetMapping("/DeviceProblems")
         public Collection<DeviceProblem> getProblems(){
                 return deviceProblemRepository.findAll().stream().collect(Collectors.toList());
 

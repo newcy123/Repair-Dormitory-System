@@ -66,9 +66,9 @@ public class RepairController{
         
         DeviceType type = deviceTypeRepository.findById(DeviceType_id);
         DeviceProblem problem = deviceProblemRepository.findById(DeviceProblem_id);
-        RoomBooking enrolledStudents = roomBookingRepository.findById(roomBooking_id);
+        RoomBooking enrolled = roomBookingRepository.findById(roomBooking_id);
 
-
+        newRepair.setEnrolled(enrolled);
         newRepair.setList(list);
         newRepair.setRepairDate(new Date());
         newRepair.setType(type);
